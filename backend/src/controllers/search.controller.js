@@ -1,26 +1,17 @@
 import supabase from "../config/supabase.config.js";
 
-
-
 // GET /search
+// Supported params: q (product_name), minPrice, maxPrice
 export const searchInventory = async (req, res) => {
   try {
-    const { q, category, minPrice, maxPrice } = req.query;
+    const { q, minPrice, maxPrice } = req.query;
 
-    // Build Supabase query dynamically based on provided filters
     let query = supabase.from("inventory").select("*");
 
-    // Partial, case-insensitive name search using Postgres ilike
     if (q?.trim()) {
-      query = query.ilike("name", `%${q.trim()}%`);
+      query = query.ilike("product_name", `%${q.trim()}%`);
     }
 
-    // Case-insensitive exact category match
-    if (category?.trim()) {
-      query = query.ilike("category", category.trim());
-    }
-
-    // Price range filters (both optional, can be combined)
     if (minPrice) {
       query = query.gte("price", parseFloat(minPrice));
     }
@@ -43,7 +34,7 @@ export const searchInventory = async (req, res) => {
     return res.status(200).json({
       status: true,
       count: data.length,
-      filters: { q, category, minPrice, maxPrice },
+      filters: { q, minPrice, maxPrice },
       data,
     });
   } catch (error) {
