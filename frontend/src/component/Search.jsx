@@ -24,7 +24,7 @@ export default function Search() {
             if (minPrice) params.append("minPrice", minPrice);
             if (maxPrice) params.append("maxPrice", maxPrice);
 
-            const res = await fetch(`https://assignment-1-vd3b.onrender.com?${params}`);
+            const res = await fetch(`https://assignment-1-vd3b.onrender.com/search?${params}`);
             const data = await res.json();
 
             setResults(data.data || []);
