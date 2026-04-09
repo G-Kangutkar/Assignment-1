@@ -24,7 +24,7 @@ export default function Search() {
             if (minPrice) params.append("minPrice", minPrice);
             if (maxPrice) params.append("maxPrice", maxPrice);
 
-            const res = await fetch(`http://localhost:6800/search?${params}`);
+            const res = await fetch(`https://assignment-1-vd3b.onrender.com?${params}`);
             const data = await res.json();
 
             setResults(data.data || []);
@@ -50,11 +50,16 @@ export default function Search() {
                 />
 
                 {/* Category Dropdown */}
-                <select value={category} className="input" onChange={(e) => setCategory(e.target.value)}>
+                <select value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="">All Categories</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="clothing">Clothing</option>
-                    <option value="books">Books</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Plumbing">Plumbing</option>
+                    <option value="Industrial">Industrial</option>
+                    <option value="Safety">Safety</option>
+                    <option value="Packaging">Packaging</option>
+                    <option value="Steel">Steel</option>
+                    <option value="Power">Power</option>
+                    <option value="Fasteners">Fasteners</option>
                 </select>
 
                 {/* Price Range */}
