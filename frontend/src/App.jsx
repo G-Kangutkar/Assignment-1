@@ -1,6 +1,6 @@
 
 import './App.css'
-import Search from './Component/Search'
+import Search from './component/Search'
 
 function App() {
 
