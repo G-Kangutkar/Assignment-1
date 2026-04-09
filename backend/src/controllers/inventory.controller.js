@@ -1,5 +1,6 @@
 import supabase from "../config/supabase.config.js";
 
+
 // POST /inventory
 export const addInventory = async (req, res) => {
   try {

@@ -1,6 +1,7 @@
 import supabase from "../config/supabase.config.js";
 
 
+
 // GET /search
 export const searchInventory = async (req, res) => {
   try {
